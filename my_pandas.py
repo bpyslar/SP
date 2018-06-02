@@ -15,30 +15,42 @@ except ImportError:
 def pandas_tasks(df):
 	col_list = df.columns
 
-	df_1 = df[(df[col_list[2]] > float(5))]
 	print("\n1st:\n")
+	df_1 = df[(df[col_list[2]] > float(5))]
 	print(df_1[col_list[2]])
 
-	df_1 = df[(df[col_list[4]] > float(235))]
 	print("\n2nd:\n")
+	df_1 = df[(df[col_list[4]] > float(235))]
 	print(df_1[col_list[4]])
 
-	df_1 = df[( 0 <= df[col_list[5]]) & (df[col_list[5]] <= 205) & (df[col_list[7]] > df[col_list[8]])]
 	print("\n3rd:\n")
+	df_1 = df[ (19 <= df[col_list[5]])&(df[col_list[5]] <= 20) & (df[col_list[7]] > df[col_list[8]])]
 	print(df_1)
 	print(df_1.memory_usage().sum(), "bytes memory usage")
 
+	print("\n4th:\n")
 	length = len(df)
-	col_length = len(col_list) #df.iloc[int or slice] - selecting by position
+	#df.loc[string or slice] - selecting by label
 	random_list = random.sample(tuple(range(length//2)),length//9)
-	df_1 = df.iloc[random_list,:] #df.loc[string or slice] - selecting by label
-	print("Average value for the 1st Group: ", df_1[col_list[col_length-3]].mean())
-	print("Average value for the 2nd Group: ", df_1[col_list[col_length-2]].mean())
-	print("Average value for the 3rd Group: ", df_1[col_list[col_length-1]].mean())
+	#range - aryphmetic progression, list from x to y(!) with z step  
+	df_1 = df.iloc[random_list,:] #df.iloc[int or slice] - selecting by position
+	print(df_1)
+	print("Average value for the 1st Group: ", df_1[col_list[6]].mean())
+	print("Average value for the 2nd Group: ", df_1[col_list[7]].mean())
+	print("Average value for the 3rd Group: ", df_1[col_list[8]].mean())
 
+	print("\n5th:\n")
 	df_1 = df[(df["Time"] > time(18,0,0)) & (df[col_list[2]] > 6)]
-	df_2 = df_1[(df_1[col_list[col_length-2]] > df_1[col_list[col_length-1]]) & (df_1[col_list[col_length-2]] > df_1[col_list[col_length-3]])]
-	print("\n4th:\n",df_2)
+	df_2 = df_1[(df_1[col_list[7]] > df_1[col_list[8]]) & (df_1[col_list[7]] > df_1[col_list[6]])]
+	print(df_2)
+	print("First half:\n")
+	firsthalf_list = list(tuple(range(len(df_2)//2)))
+	df_2_firsthalf = df_2.iloc[firsthalf_list,:]
+	print(df_2_firsthalf)
+	print("Second half:\n")
+	secondhalf_list = list(tuple(range(len(df_2)//2,len(df_2))))
+	df_2_secondhalf = df_2.iloc[secondhalf_list,:]
+	print(df_2_secondhalf)
 	return col_list
 
 
