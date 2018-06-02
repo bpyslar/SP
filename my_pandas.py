@@ -43,16 +43,35 @@ def pandas_tasks(df):
 	df_1 = df[(df["Time"] > time(18,0,0)) & (df[col_list[2]] > 6)]
 	df_2 = df_1[(df_1[col_list[7]] > df_1[col_list[8]]) & (df_1[col_list[7]] > df_1[col_list[6]])]
 	print(df_2)
-	print("First half:\n")
+
+	print("\nFirst half:\n")
 	firsthalf_list = list(tuple(range(len(df_2)//2)))
 	df_2_firsthalf = df_2.iloc[firsthalf_list,:]
 	print(df_2_firsthalf)
+	print("\nEvery third result from the 1st half:\n")
+	every_third = []
+	for i in range(len(df_2)//2):
+		if (i+1)%3 == 0:
+			every_third.append(i)
+	every_third_list = list(tuple(every_third))
+	df_2_every_third = df_2_firsthalf.iloc[every_third_list,:]
+	print(df_2_every_third)
+
 	print("Second half:\n")
-	secondhalf_list = list(tuple(range(len(df_2)//2,len(df_2))))
+	range_s = range(len(df_2)//2,len(df_2))
+	secondhalf_list = list(tuple(range_s))
 	df_2_secondhalf = df_2.iloc[secondhalf_list,:]
 	print(df_2_secondhalf)
+	print("\nEvery fourth result from the 2nd half:\n")
+	every_fourth = []
+	for i in range_s:
+		if ((i+1)%2)%2 == 0:
+			every_fourth.append(i)
+	every_fourth_list = list(tuple(every_fourth))
+	df_2_every_fourth = df_2_secondhalf.iloc[every_fourth_list,:]
+	print(df_2_every_fourth)
+	
 	return col_list
-
 
 
 def pandas_content_format(df):
