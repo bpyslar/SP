@@ -58,16 +58,26 @@ def pandas_tasks(df):
 	print(df_2_every_third)
 
 	print("Second half:\n")
-	range_s = range(len(df_2)//2,len(df_2))
+	a = len(df_2)//2
+	b = len(df_2)
+	range_s = range(a,b,1)
 	secondhalf_list = list(tuple(range_s))
 	df_2_secondhalf = df_2.iloc[secondhalf_list,:]
 	print(df_2_secondhalf)
 	print("\nEvery fourth result from the 2nd half:\n")
 	every_fourth = []
-	for i in range_s:
-		if ((i+1)%2)%2 == 0:
+	#index error:positional indexers are out-of-bounds 
+	'''for i in range_s:
+		if (i+1)%4 == 0:
+			every_fourth.append(i)'''
+	#ноутбук дико шумить і щось робить
+	i = int(a)
+	while i<b:
+		if i%4 == 0:
 			every_fourth.append(i)
-	every_fourth_list = list(tuple(every_fourth))
+			continue
+		i = i + 1
+	every_fourth_list = list(tuple(every_fourth)) 
 	df_2_every_fourth = df_2_secondhalf.iloc[every_fourth_list,:]
 	print(df_2_every_fourth)
 	
